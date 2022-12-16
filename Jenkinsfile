@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        PROJECT_ID = 'oss-fall'
+        PROJECT_ID = 'oss-363013'
         CLUSTER_NAME = 'k8s'
         LOCATION = 'asia-northeast3-a'
         CREDENTIALS_ID = 'gke'
