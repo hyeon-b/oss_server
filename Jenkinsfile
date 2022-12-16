@@ -5,7 +5,7 @@ pipeline {
         CLUSTER_NAME = 'k8s'
         LOCATION = 'asia-northeast3-a'
         CREDENTIALS_ID = 'gke'  //GithubApp을 통해 추가한 jenkins credential id
-   BUILD_ID='0.2'
+        BUILD_ID='0.2'
     }
     stages {
         stage("Build image") {
@@ -20,13 +20,12 @@ pipeline {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'shyeon') {
                             myapp.push("latest")
-             myapp.push("${env.BUILD_ID}")
+                            myapp.push("${env.BUILD_ID}")
                     }
                 }
             }
         }
    stage('Deploy to GKE') {
-
        steps{
       sh "sed -i 's/oss_server:latest/oss_server:${env.BUILD_ID}/g' Deployment.yaml"
       step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, 
