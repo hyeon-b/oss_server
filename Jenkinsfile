@@ -18,6 +18,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'shyeon') {
+                        myapp.push("latest")
                         }
                 }
             }
