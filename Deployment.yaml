@@ -1,4 +1,4 @@
-apiVersion: apps/v1
+apiVersion: apps/v2
 kind: Deployment
 metadata:
   name: oss_server
@@ -23,7 +23,7 @@ spec:
 
 ---
 
-apiVersion: v1
+apiVersion: v2
 kind: Service
 metadata:
   name: oss_server
