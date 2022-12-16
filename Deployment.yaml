@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oss_server
+  labels:
+    app: oss_server
+spec:
+  selector:
+    matchLabels:
+      app: oss_server
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: oss_server
+    spec:
+      containers:
+      - name: oss_server
+        image: bibicsh22/oss_server:latest
+        imagePullPolicy: Always
+         ports:
+        - containerPort: 3000
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: oss_server
+spec:
+  selector:
+    app: oss_server
+  ports:
+  - protocol: "TCP"
+    port: 3000
+    targetPort: 3000
+  type: LoadBalancer
